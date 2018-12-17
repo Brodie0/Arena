@@ -9,10 +9,10 @@ namespace Assets.Scripts {
         public Text countText;
         public Text winText;
         public int id;
-        public AudioClip whack;
-        public AudioClip hit;
-        public AudioClip fireball;
-        public AudioClip cycloneaudio;
+        public AudioClip whackAudio;
+        public AudioClip hitAudio;
+        public AudioClip fireballAudio;
+        public AudioClip cycloneAudio;
         public Transform fireBall;
         public Transform cyclone;
 
@@ -50,13 +50,13 @@ namespace Assets.Scripts {
 
                 if (Input.GetKeyDown (id == 0 ? KeyCode.T : KeyCode.Backslash)) {
                     anim.SetTrigger (Random.Range (0, 2) == 0 ? attack01Hash : attack02Hash);
-                    adsrc.PlayOneShot (whack, 1f);
+                    adsrc.PlayOneShot (whackAudio, 1f);
                 }
                 else if (Input.GetKeyDown (KeyCode.U) && id == 1) {
-                    StartCoroutine (CastSpellDelayed (fireBall, fireball, 1f));
+                    StartCoroutine (CastSpellDelayed (fireBall, fireballAudio, 1f));
                 }
                 else if (Input.GetKeyDown (KeyCode.I) && id == 1) {
-                    StartCoroutine (CastSpellDelayed (cyclone, cycloneaudio, 1f));
+                    StartCoroutine (CastSpellDelayed (cyclone, cycloneAudio, 1f));
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace Assets.Scripts {
             else if (other.gameObject.CompareTag ("Weapon")) {
                 DecreaseHp (1);
                 anim.SetTrigger (hitHash);
-                adsrc.PlayOneShot (hit, 1f);
+                adsrc.PlayOneShot (hitAudio, 1f);
             } 
             SetTexts ();
         }

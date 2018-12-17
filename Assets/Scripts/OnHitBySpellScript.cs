@@ -2,10 +2,10 @@
 
 namespace Assets.Scripts {
     public class OnHitBySpellScript : MonoBehaviour {
-        public AudioSource _src;
-        public AudioClip _explosion;
+        public AudioClip explosion;
         void OnParticleCollision(GameObject other){
-            _src.PlayOneShot(_explosion, 1f);
+            var src = GetComponent<AudioSource>();
+            src.PlayOneShot(explosion, 1f);
         }
     }
 }

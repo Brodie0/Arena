@@ -1034,12 +1034,12 @@ MonoBehaviour:
   countText: {fileID: 0}
   winText: {fileID: 0}
   id: 1
-  whack: {fileID: 8300000, guid: a4ba24ad126257449897b2c0c5982b5b, type: 3}
-  hit: {fileID: 8300000, guid: 870a2c895ea303e42b94ff243ae9387c, type: 3}
-  fireball: {fileID: 8300000, guid: 10f096eaa27fe594fb6cc187e48512cf, type: 3}
-  cycloneaudio: {fileID: 8300000, guid: 948f82659be7c8342867edf809a9a745, type: 3}
-  fireBall: {fileID: 400010, guid: db76c8bb5f6ac401f9922a0618d60004, type: 2}
-  cyclone: {fileID: 400008, guid: 01603b7302bd34f379cc7d1ef6b55a15, type: 2}
+  whackAudio: {fileID: 8300000, guid: a4ba24ad126257449897b2c0c5982b5b, type: 3}
+  hitAudio: {fileID: 8300000, guid: 870a2c895ea303e42b94ff243ae9387c, type: 3}
+  fireballAudio: {fileID: 8300000, guid: 10f096eaa27fe594fb6cc187e48512cf, type: 3}
+  cycloneAudio: {fileID: 8300000, guid: 948f82659be7c8342867edf809a9a745, type: 3}
+  fireBall: {fileID: 4372790655202144, guid: c2e5c1a3acc5ae3468e60fa6347827a5, type: 2}
+  cyclone: {fileID: 4429771548915628, guid: 537fdda628ddea247b3406fd091c2067, type: 2}
 --- !u!114 &114383256852952296
 MonoBehaviour:
   m_ObjectHideFlags: 1
