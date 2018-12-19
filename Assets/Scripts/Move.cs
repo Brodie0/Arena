@@ -10,24 +10,23 @@ namespace Assets.Scripts {
         private Terrain _terrain;
         private Vector3 _target;
         private const float RotationSpeed = 2.5f;
-
         private Vector3 _previousPosition;
         private float _curSpeed;
-
+        private PlayerScript _playerData;
         void Start() {
             _anim = GetComponent<Animator>();
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _camera = GetComponentInChildren<Camera>();
             _terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
             _navMeshAgent.Warp(transform.position);
+            _playerData = FindObjectOfType<PlayerScript>();
         }
         
         void Update() {
-            if (!isLocalPlayer)
+            if (!isLocalPlayer || _playerData.IsDead)
             {
                 return;
             }
-
             if (Input.GetMouseButtonDown(1)) {
                 RaycastHit hit;
                 var ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -37,8 +36,9 @@ namespace Assets.Scripts {
                     _navMeshAgent.destination = _target;
                 }
             }
+
             CalculateSpeed();
-            _anim.SetFloat ("Speed", _curSpeed);
+            _anim.SetFloat("Speed", _curSpeed);
             Rotate(_navMeshAgent.steeringTarget);
         }
 
@@ -50,13 +50,9 @@ namespace Assets.Scripts {
 
         private void Rotate(Vector3 dest){
             var targetDir = dest - transform.position;
-
-            // The step size is equal to speed times frame time.
             float step = RotationSpeed * Time.deltaTime;
-
             var newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0f);
             Debug.DrawRay(transform.position, newDir, Color.red);
-            // Move our position a step closer to the target.
             transform.rotation = Quaternion.LookRotation(newDir);
         }
     }

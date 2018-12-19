@@ -6,7 +6,7 @@ namespace Assets.Scripts {
         void OnParticleCollision(GameObject other){
             Rigidbody rb = other.GetComponent<Rigidbody> ();
             if(rb){
-                rb.AddForce (0f, 3f, 0f, ForceMode.Impulse);
+                rb.AddForce (0f, 10f, 0f, ForceMode.Impulse);
             }
         }
     }
