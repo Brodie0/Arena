@@ -6,12 +6,15 @@ namespace Assets.Scripts {
     public class FootmanScript : PlayerScript {
 
         public AudioClip whack;
-        int attack01Hash = Animator.StringToHash("Attack01");
-        int attack02Hash = Animator.StringToHash("Attack02");
 
         void Start () {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
             MaxHp = 20;
             Hp = MaxHp;
+            base.Start();
         }
 	
         // Update is called once per frame

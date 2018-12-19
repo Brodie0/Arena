@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Networking;
 
@@ -13,6 +14,12 @@ namespace Assets.Scripts {
         private Vector3 _previousPosition;
         private float _curSpeed;
         private PlayerScript _playerData;
+
+        //camera wheel
+        private const float MinFov = 15f;
+        private const float MaxFov = 90f;
+        private const float Sensitivity = 10f;
+
         void Start() {
             _anim = GetComponent<Animator>();
             _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -35,6 +42,13 @@ namespace Assets.Scripts {
                     _target = hit.point;
                     _navMeshAgent.destination = _target;
                 }
+            }
+            if (Math.Abs(Input.GetAxis("Mouse ScrollWheel")) > 0.1)
+            {
+                var fov = _camera.fieldOfView;
+                fov += Input.GetAxis("Mouse ScrollWheel") * Sensitivity;
+                fov = Mathf.Clamp(fov, MinFov, MaxFov);
+                _camera.fieldOfView = fov;
             }
 
             CalculateSpeed();

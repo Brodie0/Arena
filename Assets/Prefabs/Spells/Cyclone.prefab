@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 114474903799147536}
   - component: {fileID: 199285955801048808}
   - component: {fileID: 76443566229317798}
+  - component: {fileID: 114070603081897368}
   m_Layer: 0
   m_Name: Cyclone
   m_TagString: Untagged
@@ -211,6 +212,38 @@ WorldParticleCollider:
     m_Bits: 4294967295
   m_SendCollisionMessage: 0
   m_MinKillVelocity: 0
+--- !u!114 &114070603081897368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1780919487445684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 83
+    i1: 127
+    i2: 221
+    i3: 166
+    i4: 40
+    i5: 221
+    i6: 234
+    i7: 36
+    i8: 123
+    i9: 52
+    i10: 6
+    i11: 253
+    i12: 9
+    i13: 28
+    i14: 32
+    i15: 103
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114474903799147536
 MonoBehaviour:
   m_ObjectHideFlags: 1

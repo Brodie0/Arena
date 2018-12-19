@@ -12,13 +12,15 @@ namespace Assets.Scripts {
         public Transform fireBall;
         public Transform cyclone;
 
-        int attack01Hash = Animator.StringToHash("Attack01");
-        int attack02Hash = Animator.StringToHash("Attack02");
-
         // Use this for initialization
-        void Start () {
+        void Start()  {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
             MaxHp = 10;
             Hp = MaxHp;
+            base.Start();
         }
 
         // Update is called once per frame
@@ -38,7 +40,7 @@ namespace Assets.Scripts {
         }
 
         private IEnumerator CastSpellDelayed(Transform spell, AudioClip audioClip, float timeToWait){
-            Anim.SetTrigger (attack02Hash);
+            Anim.SetTrigger(attack02Hash);
             yield return new WaitForSeconds(timeToWait);
             AudioSource.PlayOneShot (audioClip, 1f);
             Instantiate (spell, new Vector3 (Rb.position.x, Rb.position.y + 1f, Rb.position.z) + Rb.rotation * new Vector3 (0f, 0f, 3f), Rb.rotation);
