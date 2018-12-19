@@ -36,32 +36,14 @@ namespace Assets.Scripts {
 
         // Update is called once per frame
         void FixedUpdate () {
-//            if (!isDead) {
-//                float moveHorizontal = Input.GetAxis ("Horizontal");
-//                float moveVertical = Input.GetAxis ("Vertical");
-//                Vector3 movement = new Vector3 (moveHorizontal, 0f, moveVertical);
-//                rb.AddForce (movement, ForceMode.Impulse);
-//                Rotate (movement);
-//                if (rb.velocity.magnitude > maxSpeed)
-//                    rb.velocity = rb.velocity.normalized * maxSpeed;
-//
-//                anim.SetFloat ("Speed", rb.velocity.magnitude);
-//
-//                if (Input.GetKeyDown (KeyCode.Q)) {
-//                    StartCoroutine (CastSpellDelayed (fireBall, fireballAudio, 1f));
-//                }
-//                else if (Input.GetKeyDown (KeyCode.W)) {
-//                    StartCoroutine (CastSpellDelayed (cyclone, cycloneAudio, 1f));
-//                }
-//            }
-        }
-
-        void Rotate(Vector3 dest){
-            float step = 10f * Time.deltaTime;
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, dest, step, 0f);
-            //TODO nie uzywaj transforma jesli masz rigidbody!!!
-            //TODO przy kolzji graczy wyglada jakby to te meshcollidery z shadow kolidowały a nie kapsuły :/
-            rb.MoveRotation(Quaternion.LookRotation(newDir));
+            if (!isDead) {
+                if (Input.GetKeyDown (KeyCode.Q)) {
+                    StartCoroutine (CastSpellDelayed (fireBall, fireballAudio, 1f));
+                }
+                else if (Input.GetKeyDown (KeyCode.W)) {
+                    StartCoroutine (CastSpellDelayed (cyclone, cycloneAudio, 1f));
+                }
+            }
         }
 
         void OnTriggerEnter(Collider other) {

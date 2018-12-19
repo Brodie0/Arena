@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 namespace Assets.Scripts {
-    public class PlayerScript : MonoBehaviour {
+    public class FootmanScript : MonoBehaviour {
 
         public Animator anim;
         int hp;
@@ -11,9 +11,6 @@ namespace Assets.Scripts {
         int hitHash = Animator.StringToHash("GetHit");
         public Text countText;
 //        public Text winText;
-        public int id;
-        Rigidbody rb;
-        float maxSpeed = 100f;//Replace with your max speed
         AudioSource adsrc;
         public AudioClip whack;
         public AudioClip hit;
@@ -25,36 +22,17 @@ namespace Assets.Scripts {
             hp = 10;
 //            winText.text = "";
             SetTexts ();
-            rb = GetComponent<Rigidbody> ();
             adsrc = GetComponent<AudioSource> ();
         }
 	
         // Update is called once per frame
         void FixedUpdate () {
             if (!isDead) {
-                float moveHorizontal = Input.GetAxis ("Horizontal" + id);
-                float moveVertical = Input.GetAxis ("Vertical" + id);
-                Vector3 movement = new Vector3 (moveHorizontal, 0f, moveVertical);
-                rb.AddForce (movement, ForceMode.Impulse);
-                Rotate (movement);
-                if (rb.velocity.magnitude > maxSpeed)
-                    rb.velocity = rb.velocity.normalized * maxSpeed;
-
-                anim.SetFloat ("Speed", rb.velocity.magnitude);
-
-                if (Input.GetKeyDown (id == 0 ? KeyCode.T : KeyCode.Backslash)) {
+                if (Input.GetKeyDown (KeyCode.Q)) {
                     anim.SetTrigger (Random.Range (0, 2) == 0 ? attack01Hash : attack02Hash);
                     adsrc.PlayOneShot (whack, 1f);
                 }
             }
-        }
-
-        void Rotate(Vector3 dest){
-            float step = 10f * Time.deltaTime;
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, dest, step, 0f);
-            //TODO nie uzywaj transforma jesli masz rigidbody!!!
-            //TODO przy kolzji graczy wyglada jakby to te meshcollidery z shadow kolidowały a nie kapsuły :/
-            rb.MoveRotation(Quaternion.LookRotation(newDir));
         }
 
         void OnTriggerEnter(Collider other) {
@@ -67,15 +45,6 @@ namespace Assets.Scripts {
                 anim.SetTrigger (hitHash);
                 adsrc.PlayOneShot (hit, 1f);
             } 
-            SetTexts ();
-        }
-
-        void OnCollisionEnter(Collision collision)
-        {
-            if (collision.collider.gameObject.CompareTag ("Ball")) {
-                DecreaseHp (2);
-                anim.SetTrigger (hitHash);
-            }
             SetTexts ();
         }
 
@@ -96,11 +65,10 @@ namespace Assets.Scripts {
         }
 
         void DecreaseHp(int count){
-            if (hp >= 0 + count) {
+            if (hp - count >= 0) {
                 hp -= count;
-            } else hp = 0;
-
-            anim.SetInteger ("HP", hp);
+                anim.SetInteger ("HP", hp);
+            }
         }
 
         void IncreaseHp(int count){

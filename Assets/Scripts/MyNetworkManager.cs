@@ -35,20 +35,4 @@ public class MyNetworkManager : NetworkManager
         var test = new NetworkMessage {ChosenClass = ChosenCharacter};
         ClientScene.AddPlayer(conn, 0, test);
     }
- 
- 
-    public override void OnClientSceneChanged(NetworkConnection conn)
-    {
-        //base.OnClientSceneChanged(conn);
-    }
- 
-    public void btn1()
-    {
-        ChosenCharacter = 0;
-    }
- 
-    public void btn2()
-    {
-        ChosenCharacter = 1;
-    }
 }
