@@ -8,7 +8,6 @@ namespace Assets.Scripts {
         public Animator anim;
         public Text countText;
         public Text winText;
-        public int id;
         public AudioClip whackAudio;
         public AudioClip hitAudio;
         public AudioClip fireballAudio;
@@ -37,28 +36,24 @@ namespace Assets.Scripts {
 
         // Update is called once per frame
         void FixedUpdate () {
-            if (!isDead) {
-                float moveHorizontal = Input.GetAxis ("Horizontal" + id);
-                float moveVertical = Input.GetAxis ("Vertical" + id);
-                Vector3 movement = new Vector3 (moveHorizontal, 0f, moveVertical);
-                rb.AddForce (movement, ForceMode.Impulse);
-                Rotate (movement);
-                if (rb.velocity.magnitude > maxSpeed)
-                    rb.velocity = rb.velocity.normalized * maxSpeed;
-
-                anim.SetFloat ("Speed", rb.velocity.magnitude);
-
-                if (Input.GetKeyDown (id == 0 ? KeyCode.T : KeyCode.Backslash)) {
-                    anim.SetTrigger (Random.Range (0, 2) == 0 ? attack01Hash : attack02Hash);
-                    adsrc.PlayOneShot (whackAudio, 1f);
-                }
-                else if (Input.GetKeyDown (KeyCode.U) && id == 1) {
-                    StartCoroutine (CastSpellDelayed (fireBall, fireballAudio, 1f));
-                }
-                else if (Input.GetKeyDown (KeyCode.I) && id == 1) {
-                    StartCoroutine (CastSpellDelayed (cyclone, cycloneAudio, 1f));
-                }
-            }
+//            if (!isDead) {
+//                float moveHorizontal = Input.GetAxis ("Horizontal");
+//                float moveVertical = Input.GetAxis ("Vertical");
+//                Vector3 movement = new Vector3 (moveHorizontal, 0f, moveVertical);
+//                rb.AddForce (movement, ForceMode.Impulse);
+//                Rotate (movement);
+//                if (rb.velocity.magnitude > maxSpeed)
+//                    rb.velocity = rb.velocity.normalized * maxSpeed;
+//
+//                anim.SetFloat ("Speed", rb.velocity.magnitude);
+//
+//                if (Input.GetKeyDown (KeyCode.Q)) {
+//                    StartCoroutine (CastSpellDelayed (fireBall, fireballAudio, 1f));
+//                }
+//                else if (Input.GetKeyDown (KeyCode.W)) {
+//                    StartCoroutine (CastSpellDelayed (cyclone, cycloneAudio, 1f));
+//                }
+//            }
         }
 
         void Rotate(Vector3 dest){
@@ -70,7 +65,7 @@ namespace Assets.Scripts {
         }
 
         void OnTriggerEnter(Collider other) {
-            if (other.gameObject.CompareTag ("PickUp")) {
+            if (other.gameObject.CompareTag ("LifePotion")) {
                 other.gameObject.SetActive (false);
                 IncreaseHp (1);
             } 
@@ -79,15 +74,6 @@ namespace Assets.Scripts {
                 anim.SetTrigger (hitHash);
                 adsrc.PlayOneShot (hitAudio, 1f);
             } 
-            SetTexts ();
-        }
-
-        void OnCollisionEnter(Collision collision)
-        {
-            if (collision.collider.gameObject.CompareTag ("Ball")) {
-                DecreaseHp (2);
-                anim.SetTrigger (hitHash);
-            }
             SetTexts ();
         }
 
@@ -100,7 +86,7 @@ namespace Assets.Scripts {
         }
 
         void DecreaseHp(int count){
-            if (hp >= 0 + count) {
+            if (hp - count >= 0) {
                 hp -= count;
                 anim.SetInteger ("HP", hp);
             }
@@ -113,10 +99,10 @@ namespace Assets.Scripts {
             }
         }
 
-        IEnumerator CastSpellDelayed(Transform spell, AudioClip audio, float timeToWait){
+        private IEnumerator CastSpellDelayed(Transform spell, AudioClip audioClip, float timeToWait){
             anim.SetTrigger (attack02Hash);
             yield return new WaitForSeconds(timeToWait);
-            adsrc.PlayOneShot (audio, 1f);
+            adsrc.PlayOneShot (audioClip, 1f);
             Instantiate (spell, new Vector3 (rb.position.x, rb.position.y + 0.5f, rb.position.z) + rb.rotation * new Vector3 (0f, 0f, 3f), rb.rotation);
         }
     }

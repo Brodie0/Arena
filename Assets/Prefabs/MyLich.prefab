@@ -23,11 +23,12 @@ GameObject:
   - component: {fileID: 114346045823913232}
   - component: {fileID: 82089230949010890}
   - component: {fileID: 54968147291078702}
-  - component: {fileID: 65952881455896080}
   - component: {fileID: 136221047263122398}
   - component: {fileID: 114050992854487266}
   - component: {fileID: 114383256852952296}
   - component: {fileID: 114451370028070798}
+  - component: {fileID: 114725883978852220}
+  - component: {fileID: 195339090704729638}
   m_Layer: 0
   m_Name: MyLich
   m_TagString: Untagged
@@ -535,7 +536,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1014307493478040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 260, y: 1.3, z: 260}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4159123476898290}
@@ -868,26 +869,14 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1014307493478040}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 5
+  m_Mass: 30
+  m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &65952881455896080
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1014307493478040}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.5, z: 1}
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_CollisionDetection: 2
 --- !u!81 &81007970539575052
 AudioListener:
   m_ObjectHideFlags: 1
@@ -1033,7 +1022,6 @@ MonoBehaviour:
   anim: {fileID: 95699218063214138}
   countText: {fileID: 0}
   winText: {fileID: 0}
-  id: 1
   whackAudio: {fileID: 8300000, guid: a4ba24ad126257449897b2c0c5982b5b, type: 3}
   hitAudio: {fileID: 8300000, guid: 870a2c895ea303e42b94ff243ae9387c, type: 3}
   fireballAudio: {fileID: 8300000, guid: 10f096eaa27fe594fb6cc187e48512cf, type: 3}
@@ -1093,6 +1081,17 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114725883978852220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014307493478040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5853a10c9da81334f8d1c78ca833e761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136221047263122398
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1188,3 +1187,24 @@ SkinnedMeshRenderer:
     m_Center: {x: -94.448425, y: -11.778332, z: -2.2719574}
     m_Extent: {x: 168.41486, y: 97.625046, z: 113.145996}
   m_DirtyAABB: 0
+--- !u!195 &195339090704729638
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014307493478040}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

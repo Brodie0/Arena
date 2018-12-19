@@ -4,12 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Footman
-  - Ball
-  - Fire
   - Weapon
   - FireSpell
-  - Spear
   - LifePotion
   layers:
   - Default
@@ -20,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - FireLayer
+  - 
   - 
   - 
   - 
