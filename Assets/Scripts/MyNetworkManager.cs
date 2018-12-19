@@ -1,38 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 
-public class MyNetworkManager : NetworkManager
-{
-    public int ChosenCharacter;
-    public GameObject[] Characters;
-
-    //subclass for sending network messages
-    public class NetworkMessage : MessageBase
+namespace Assets.Scripts {
+    public class MyNetworkManager : NetworkManager
     {
-        public int ChosenClass;
-    }
+        public int LocalChosenCharacter;
+        public GameObject[] Characters;
 
-    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
-    {
-        var message = extraMessageReader.ReadMessage<NetworkMessage>();
-        int selectedClass = message.ChosenClass;
-        Debug.Log("server add with message " + selectedClass);
+        //subclass for sending network messages
+        public class NetworkMessage : MessageBase
+        {
+            public int ChosenCharacter;
+        }
 
-        Transform startPos = GetStartPosition();
-        Debug.Log("pos: " + startPos);
+        public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
+        {
+            var message = extraMessageReader.ReadMessage<NetworkMessage>();
+            int clientChosenCharacter = message.ChosenCharacter;
+            Transform startPos = GetStartPosition();
 
-        GameObject player = startPos != null ? 
-            Instantiate(Characters[ChosenCharacter], startPos.position, startPos.rotation) 
-            : Instantiate(Characters[ChosenCharacter], Vector3.zero, Quaternion.identity);
+            GameObject player = startPos != null ? 
+                Instantiate(Characters[clientChosenCharacter], startPos.position, startPos.rotation) 
+                : Instantiate(Characters[clientChosenCharacter], Vector3.zero, Quaternion.identity);
  
-        NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-    }
+            NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+        }
  
-    public override void OnClientConnect(NetworkConnection conn)
-    {
-        var test = new NetworkMessage {ChosenClass = ChosenCharacter};
-        ClientScene.AddPlayer(conn, 0, test);
+        public override void OnClientConnect(NetworkConnection conn)
+        {
+            var msg = new NetworkMessage { ChosenCharacter = LocalChosenCharacter };
+            ClientScene.AddPlayer(conn, 0, msg);
+        }
     }
 }

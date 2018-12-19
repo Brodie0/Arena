@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace Assets.Scripts {
-    public class LichScript : MonoBehaviour {
+    public class LichScript : NetworkBehaviour {
 
         public Animator anim;
         public Text countText;
@@ -20,7 +21,6 @@ namespace Assets.Scripts {
         int attack02Hash = Animator.StringToHash("Attack02");
         int hitHash = Animator.StringToHash("GetHit");
         Rigidbody rb;
-        float maxSpeed = 100f;//Replace with your max speed
         AudioSource adsrc;
         private bool isDead = false;
 
@@ -36,6 +36,10 @@ namespace Assets.Scripts {
 
         // Update is called once per frame
         void FixedUpdate () {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
             if (!isDead) {
                 if (Input.GetKeyDown (KeyCode.Q)) {
                     StartCoroutine (CastSpellDelayed (fireBall, fireballAudio, 1f));
@@ -47,6 +51,10 @@ namespace Assets.Scripts {
         }
 
         void OnTriggerEnter(Collider other) {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
             if (other.gameObject.CompareTag ("LifePotion")) {
                 other.gameObject.SetActive (false);
                 IncreaseHp (1);
@@ -85,7 +93,7 @@ namespace Assets.Scripts {
             anim.SetTrigger (attack02Hash);
             yield return new WaitForSeconds(timeToWait);
             adsrc.PlayOneShot (audioClip, 1f);
-            Instantiate (spell, new Vector3 (rb.position.x, rb.position.y + 0.5f, rb.position.z) + rb.rotation * new Vector3 (0f, 0f, 3f), rb.rotation);
+            Instantiate (spell, new Vector3 (rb.position.x, rb.position.y + 1f, rb.position.z) + rb.rotation * new Vector3 (0f, 0f, 3f), rb.rotation);
         }
     }
 }

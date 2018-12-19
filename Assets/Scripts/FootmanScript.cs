@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace Assets.Scripts {
-    public class FootmanScript : MonoBehaviour {
+    public class FootmanScript : NetworkBehaviour {
 
         public Animator anim;
         int hp;
@@ -27,6 +28,10 @@ namespace Assets.Scripts {
 	
         // Update is called once per frame
         void FixedUpdate () {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
             if (!isDead) {
                 if (Input.GetKeyDown (KeyCode.Q)) {
                     anim.SetTrigger (Random.Range (0, 2) == 0 ? attack01Hash : attack02Hash);
@@ -36,6 +41,10 @@ namespace Assets.Scripts {
         }
 
         void OnTriggerEnter(Collider other) {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
             if (other.gameObject.CompareTag ("LifePotion")) {
                 other.gameObject.SetActive (false);
                 IncreaseHp (1);
@@ -49,6 +58,10 @@ namespace Assets.Scripts {
         }
 
         void OnParticleCollision(GameObject other){
+            if (!isLocalPlayer)
+            {
+                return;
+            }
             if (other.gameObject.CompareTag ("FireSpell")) {
                 DecreaseHp (3);
                 anim.SetTrigger (hitHash);

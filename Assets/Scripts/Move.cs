@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Networking;
 
 namespace Assets.Scripts {
-    public class Move : MonoBehaviour {
+    public class Move : NetworkBehaviour {
         private Animator _anim;
         private NavMeshAgent _navMeshAgent;
         private Camera _camera;
@@ -22,6 +23,11 @@ namespace Assets.Scripts {
         }
         
         void Update() {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
+
             if (Input.GetMouseButtonDown(1)) {
                 RaycastHit hit;
                 var ray = _camera.ScreenPointToRay(Input.mousePosition);
