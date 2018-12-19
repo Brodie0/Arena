@@ -10,7 +10,7 @@ namespace Assets.Scripts {
         int attack02Hash = Animator.StringToHash("Attack02");
         int hitHash = Animator.StringToHash("GetHit");
         public Text countText;
-        public Text winText;
+//        public Text winText;
         public int id;
         Rigidbody rb;
         float maxSpeed = 100f;//Replace with your max speed
@@ -23,7 +23,7 @@ namespace Assets.Scripts {
         void Start () {
             anim.GetComponent<Animator>();
             hp = 10;
-            winText.text = "";
+//            winText.text = "";
             SetTexts ();
             rb = GetComponent<Rigidbody> ();
             adsrc = GetComponent<AudioSource> ();
@@ -88,11 +88,11 @@ namespace Assets.Scripts {
         }
 
         void SetTexts() {
-            countText.text = "Player" + id + " HP: " + hp;
-            if (hp <= 0) {
-                winText.text = "Player" + (id == 0 ? 1 : 0) + " WINS!";
-                isDead = true;
-            }
+//            countText.text = "Player" + id + " HP: " + hp;
+//            if (hp <= 0) {
+//                winText.text = "Player" + (id == 0 ? 1 : 0) + " WINS!";
+//                isDead = true;
+//            }
         }
 
         void DecreaseHp(int count){

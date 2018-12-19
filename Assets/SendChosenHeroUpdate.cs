@@ -22,12 +22,15 @@ public class SendChosenHeroUpdate : MonoBehaviour {
         _lichModel = GameObject.Find("LichModel");
 
         _models = new Dictionary<int, GameObject>();
+        Debug.Log("footman: " + _footmanModel);
+        Debug.Log("lich: " + _lichModel);
         _models.Add(0, _footmanModel);
         _models.Add(1, _lichModel);
 
         foreach (var keyValuePair in _models) {
             keyValuePair.Value.SetActive(false);
         }
+        _models[0].SetActive(true);
     }
 
     //Ouput the new value of the Dropdown into Text
