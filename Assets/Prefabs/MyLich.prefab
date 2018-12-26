@@ -1193,7 +1193,7 @@ MonoBehaviour:
   whackAudio: {fileID: 8300000, guid: a4ba24ad126257449897b2c0c5982b5b, type: 3}
   fireballAudio: {fileID: 8300000, guid: 10f096eaa27fe594fb6cc187e48512cf, type: 3}
   cycloneAudio: {fileID: 8300000, guid: 948f82659be7c8342867edf809a9a745, type: 3}
-  fireBall: {fileID: 4372790655202144, guid: c2e5c1a3acc5ae3468e60fa6347827a5, type: 2}
+  fireBall: {fileID: 1271528728174890, guid: c2e5c1a3acc5ae3468e60fa6347827a5, type: 2}
   cyclone: {fileID: 4429771548915628, guid: 537fdda628ddea247b3406fd091c2067, type: 2}
 --- !u!136 &136097977107018734
 CapsuleCollider:

@@ -9,7 +9,7 @@ namespace Assets.Scripts {
         public AudioClip whackAudio;
         public AudioClip fireballAudio;
         public AudioClip cycloneAudio;
-        public Transform fireBall;
+        public GameObject fireBall;
         public Transform cyclone;
 
         // Use this for initialization
@@ -31,9 +31,12 @@ namespace Assets.Scripts {
             }
             if (!IsDead) {
                 if (Input.GetKeyDown (KeyCode.Q)) {
-                    StartCoroutine (CastSpellDelayed (fireBall, fireballAudio, 1f));
+                    CmdSpawnFireball(new Vector3 (Rb.position.x, Rb.position.y + 1f, Rb.position.z) + Rb.rotation * new Vector3 (0f, 0f, 3f), Rb.rotation);
                 }
                 else if (Input.GetKeyDown (KeyCode.W)) {
+                    //todo ms obiekt w networkmanager
+                    // komenda do serwera
+                    // musi byc networkidentity
                     StartCoroutine (CastSpellDelayed (cyclone, cycloneAudio, 1f));
                 }
             }
@@ -44,6 +47,12 @@ namespace Assets.Scripts {
             yield return new WaitForSeconds(timeToWait);
             AudioSource.PlayOneShot (audioClip, 1f);
             Instantiate (spell, new Vector3 (Rb.position.x, Rb.position.y + 1f, Rb.position.z) + Rb.rotation * new Vector3 (0f, 0f, 3f), Rb.rotation);
+        }
+
+        [Command]
+        private void CmdSpawnFireball(Vector3 position, Quaternion rotation) {
+            var instantiate = Instantiate(fireBall, position, rotation);
+            NetworkServer.Spawn(instantiate);
         }
     }
 }
