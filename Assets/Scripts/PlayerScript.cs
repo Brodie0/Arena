@@ -18,7 +18,9 @@ namespace Assets.Scripts {
         private Text _health;
 
         protected void Start () {
-
+            var playerCollider = GetComponent<Collider>();
+            var terrainCollider = GameObject.Find("Terrain").GetComponent<TerrainCollider>();
+            Physics.IgnoreCollision(playerCollider, terrainCollider);
             Anim = GetComponent<Animator>();
             AudioSource = GetComponent<AudioSource>();
             if (!isLocalPlayer)
