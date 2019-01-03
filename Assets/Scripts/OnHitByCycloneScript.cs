@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Assets.Scripts {
-    public class OnHitByCycloneScript : MonoBehaviour {
+    public class OnHitByCycloneScript : NetworkBehaviour {
 
         void OnParticleCollision(GameObject other){
-            Rigidbody rb = other.GetComponent<Rigidbody> ();
+            var rb = other.GetComponent<Rigidbody> ();
             if(rb){
-                rb.AddForce (0f, 10f, 0f, ForceMode.Impulse);
+                rb.AddTorque(0, 20, 0, ForceMode.Impulse);
             }
         }
     }
