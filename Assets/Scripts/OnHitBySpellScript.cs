@@ -8,7 +8,7 @@ namespace Assets.Scripts {
         void OnParticleCollision(GameObject other) {
             Invoke("RemoveOnServer", 2);
             var src = GetComponent<AudioSource>();
-            src.PlayOneShot(explosion, 1f);
+            src.PlayOneShot(explosion, 0.5f);
         }
 
         private void RemoveOnServer() {
