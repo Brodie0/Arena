@@ -29,7 +29,12 @@ namespace Assets.Scripts {
             }
             Rb = GetComponent<Rigidbody>();
             _health = GetComponentInChildren<Text>();
+            Anim.SetInteger("HP", Hp);
             UpdateUI();
+        }
+
+        protected void FixedUpdate() {
+            Anim.SetFloat ("Speed", Rb.velocity.magnitude);
         }
 
         protected void OnTriggerEnter(Collider other) {
@@ -58,6 +63,7 @@ namespace Assets.Scripts {
             }
             if (Hp - count >= 0) {
                 Hp -= count;
+                Anim.SetInteger("HP", Hp);
             }
             else {
                 IsDead = true;
@@ -72,6 +78,7 @@ namespace Assets.Scripts {
             }
             if (Hp > 0) {
                 Hp += count;
+                Anim.SetInteger("HP", Hp);
             }
             UpdateUI();
         }
