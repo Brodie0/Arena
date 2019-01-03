@@ -31,6 +31,8 @@ namespace Assets.Scripts {
             }
             if (!IsDead) {
                 if (Input.GetKeyDown (KeyCode.Q)) {
+                    Anim.SetTrigger (attack02Hash);
+                    AudioSource.PlayOneShot (fireballAudio, 1f);
                     CmdSpawnFireball(new Vector3 (Rb.position.x, Rb.position.y + 1f, Rb.position.z) + Rb.rotation * new Vector3 (0f, 0f, 3f), Rb.rotation);
                 }
                 else if (Input.GetKeyDown (KeyCode.W)) {

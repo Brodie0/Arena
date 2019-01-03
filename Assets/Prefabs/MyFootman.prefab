@@ -345,6 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4364167271961872}
   - component: {fileID: 95667913594950870}
+  - component: {fileID: 114785152304728652}
   - component: {fileID: 114536199037980056}
   - component: {fileID: 82207451537800042}
   - component: {fileID: 54205767034493138}
@@ -1220,6 +1221,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13987975ebb842448a23ec5c0a8463f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114785152304728652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1710621772640306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95667913594950870}
+  m_ParameterSendBits: 31
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!136 &136732197069096624
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1240,7 +1260,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1710621772640306}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.45
   m_Height: 2
