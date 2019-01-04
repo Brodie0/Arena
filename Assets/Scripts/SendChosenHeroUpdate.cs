@@ -10,6 +10,8 @@ namespace Assets.Scripts {
         private Dictionary<int, GameObject> _models;
         private GameObject _footmanModel;
         private GameObject _lichModel;
+        private GameObject _gruntModel;
+        private GameObject _golemModel;
 
         void Start()
         {
@@ -20,10 +22,14 @@ namespace Assets.Scripts {
             });
             _footmanModel = GameObject.Find("FootmanModel");
             _lichModel = GameObject.Find("LichModel");
+            _gruntModel = GameObject.Find("GruntModel");
+            _golemModel = GameObject.Find("GolemModel");
 
             _models = new Dictionary<int, GameObject>();
             _models.Add(0, _footmanModel);
             _models.Add(1, _lichModel);
+            _models.Add(2, _gruntModel);
+            _models.Add(3, _golemModel);
 
             foreach (var keyValuePair in _models) {
                 keyValuePair.Value.SetActive(false);
