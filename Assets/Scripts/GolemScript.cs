@@ -12,7 +12,7 @@ public class GolemScript : PlayerScript {
         {
             return;
         }
-        MaxHp = 20;
+        MaxHp = 50;
         Hp = MaxHp;
         base.Start();
     }
