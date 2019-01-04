@@ -325,7 +325,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4841894704299492}
   - component: {fileID: 33149478203710056}
-  - component: {fileID: 64035271481542674}
   - component: {fileID: 23926342682652360}
   m_Layer: 0
   m_Name: Shadow
@@ -927,20 +926,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!64 &64035271481542674
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1840546958153638}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!81 &81884282996354650
 AudioListener:
   m_ObjectHideFlags: 1
