@@ -2670,6 +2670,8 @@ MonoBehaviour:
   Characters:
   - {fileID: 1710621772640306, guid: c772c8f9fa55d404f8389564e012b69f, type: 2}
   - {fileID: 1563874953429504, guid: 11ab11cb62e3dcd46a1a3b896a4bab11, type: 2}
+  - {fileID: 1927786851881512, guid: 12dbbd4c9e2aeaa4caa000808b136957, type: 2}
+  - {fileID: 1856764414135112, guid: 987891cf78888db4bb7c44e573a58cb4, type: 2}
 --- !u!4 &1111172249 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4243724423293762, guid: c07f24e35f07ce74ba43afa35d48adf7,

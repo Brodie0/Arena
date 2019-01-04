@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 95218552635655808}
-  m_ParameterSendBits: 0
+  m_ParameterSendBits: 31
   param0: 
   param1: 
   param2: 
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDead: 0
-  whack: {fileID: 0}
+  whack: {fileID: 8300000, guid: a4ba24ad126257449897b2c0c5982b5b, type: 3}
 --- !u!136 &136153440902438282
 CapsuleCollider:
   m_ObjectHideFlags: 1
