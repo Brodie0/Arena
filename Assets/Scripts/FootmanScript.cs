@@ -25,7 +25,7 @@ namespace Assets.Scripts {
             }
             if (!IsDead) {
                 if (Input.GetKeyDown (KeyCode.Q)) {
-                    Anim.SetTrigger (Random.Range (0, 2) == 0 ? attack01Hash : attack02Hash);
+                    Anim.SetTrigger (Random.Range (0, 2) == 0 ? Attack01Hash : Attack02Hash);
                     AudioSource.PlayOneShot (whack, 1f);
                 }
             }

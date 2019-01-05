@@ -12,8 +12,9 @@ namespace Assets.Scripts {
         protected Rigidbody Rb;
         protected AudioSource AudioSource;
         protected readonly int HitHash = Animator.StringToHash("GetHit");
-        protected int attack01Hash = Animator.StringToHash("Attack01");
-        protected int attack02Hash = Animator.StringToHash("Attack02");
+        protected readonly int Attack01Hash = Animator.StringToHash("Attack01");
+        protected readonly int Attack02Hash = Animator.StringToHash("Attack02");
+        protected readonly int DieHash = Animator.StringToHash("Death");
         protected AudioClip Hit;
         private Text _health;
 
@@ -67,6 +68,7 @@ namespace Assets.Scripts {
             }
             else {
                 IsDead = true;
+                Anim.SetTrigger (DieHash);
             }
             UpdateUI();
         }
