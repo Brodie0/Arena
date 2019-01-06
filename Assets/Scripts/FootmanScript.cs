@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.UI;
 
 namespace Assets.Scripts {
     public class FootmanScript : PlayerScript {
@@ -25,7 +23,11 @@ namespace Assets.Scripts {
             }
             if (!IsDead) {
                 if (Input.GetKeyDown (KeyCode.Q)) {
-                    Anim.SetTrigger (Random.Range (0, 2) == 0 ? Attack01Hash : Attack02Hash);
+                    Anim.SetTrigger (Attack01Hash);
+                    AudioSource.PlayOneShot (whack, 1f);
+                }
+                if (Input.GetKeyDown (KeyCode.W)) {
+                    Anim.SetTrigger (Attack02Hash);
                     AudioSource.PlayOneShot (whack, 1f);
                 }
             }
