@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class GolemScript : PlayerScript {
 
@@ -25,7 +26,11 @@ public class GolemScript : PlayerScript {
         }
         if (!IsDead) {
             if (Input.GetKeyDown (KeyCode.Q)) {
-                Anim.SetTrigger (Random.Range (0, 2) == 0 ? Attack01Hash : Attack02Hash);
+                NetAnim.SetTrigger(Attack01Hash);
+                AudioSource.PlayOneShot (whack, 1f);
+            }
+            if (Input.GetKeyDown (KeyCode.W)) {
+                NetAnim.SetTrigger(Attack02Hash);
                 AudioSource.PlayOneShot (whack, 1f);
             }
         }

@@ -2614,7 +2614,7 @@ MonoBehaviour:
   - {fileID: 1271528728174890, guid: c2e5c1a3acc5ae3468e60fa6347827a5, type: 2}
   - {fileID: 1780919487445684, guid: 537fdda628ddea247b3406fd091c2067, type: 2}
   m_CustomConfig: 1
-  m_MaxConnections: 16
+  m_MaxConnections: 8
   m_ConnectionConfig:
     m_PacketSize: 1440
     m_FragmentSize: 500

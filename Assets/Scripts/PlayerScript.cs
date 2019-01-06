@@ -9,12 +9,13 @@ namespace Assets.Scripts {
         protected int Hp;
         protected int MaxHp;
         protected Animator Anim;
+        protected NetworkAnimator NetAnim;
         protected Rigidbody Rb;
         protected AudioSource AudioSource;
-        protected readonly int HitHash = Animator.StringToHash("GetHit");
+        protected readonly int GetHitHash = Animator.StringToHash("GetHit");
         protected readonly int Attack01Hash = Animator.StringToHash("Attack01");
         protected readonly int Attack02Hash = Animator.StringToHash("Attack02");
-        protected readonly int DieHash = Animator.StringToHash("Death");
+        protected readonly int IsDeadHash = Animator.StringToHash("IsDead");
         protected AudioClip Hit;
         private Text _health;
 
@@ -23,6 +24,7 @@ namespace Assets.Scripts {
             var terrainCollider = GameObject.Find("Terrain").GetComponent<TerrainCollider>();
             Physics.IgnoreCollision(playerCollider, terrainCollider);
             Anim = GetComponent<Animator>();
+            NetAnim = GetComponent<NetworkAnimator>();
             AudioSource = GetComponent<AudioSource>();
             if (!isLocalPlayer)
             {
@@ -30,11 +32,14 @@ namespace Assets.Scripts {
             }
             Rb = GetComponent<Rigidbody>();
             _health = GetComponentInChildren<Text>();
-            Anim.SetInteger("HP", Hp);
             UpdateUI();
         }
 
         protected void FixedUpdate() {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
             Anim.SetFloat ("Speed", Rb.velocity.magnitude);
         }
 
@@ -45,7 +50,7 @@ namespace Assets.Scripts {
             } 
             else if (other.gameObject.CompareTag ("Weapon")) {
                 DecreaseHp (1);
-                Anim.SetTrigger (HitHash);
+                NetAnim.SetTrigger(GetHitHash);
                 AudioSource.PlayOneShot (Hit, 1f);
             } 
         }
@@ -53,7 +58,8 @@ namespace Assets.Scripts {
         void OnParticleCollision(GameObject other){
             if (other.gameObject.CompareTag ("FireSpell")) {
                 DecreaseHp (2);
-                Anim.SetTrigger (HitHash);
+                //necessary for second animation layer synchronization (Torso), i dont know why first layer works without this tho...
+                NetAnim.SetTrigger(GetHitHash);
             }
         }
 
@@ -62,13 +68,13 @@ namespace Assets.Scripts {
             {
                 return;
             }
-            if (Hp - count >= 0) {
+            if (Hp - count > 0) {
                 Hp -= count;
-                Anim.SetInteger("HP", Hp);
             }
             else {
+                Hp = 0;
                 IsDead = true;
-                Anim.SetTrigger (DieHash);
+                NetAnim.SetTrigger (IsDeadHash);
             }
             UpdateUI();
         }
@@ -80,7 +86,6 @@ namespace Assets.Scripts {
             }
             if (Hp > 0) {
                 Hp += count;
-                Anim.SetInteger("HP", Hp);
             }
             UpdateUI();
         }
