@@ -43,13 +43,13 @@ namespace Assets.Scripts {
             }
         }
 
-        [Command]
+        [Command(channel = 0)]
         private void CmdSpawnFireball(Vector3 position, Quaternion rotation) {
             var instantiate = Instantiate(fireBall, position, rotation);
             NetworkServer.Spawn(instantiate);
         }
 
-        [Command]
+        [Command(channel = 1)]
         private void CmdSpawnCyclone(Vector3 position, Quaternion rotation) {
             var instantiate = Instantiate(cyclone, position, rotation);
             NetworkServer.Spawn(instantiate);
