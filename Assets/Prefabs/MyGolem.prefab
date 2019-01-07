@@ -856,7 +856,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!81 &81923813411763952
 AudioListener:
   m_ObjectHideFlags: 1
@@ -971,7 +971,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 64e2ef14a02f69a4b94edbee54ca296a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1054,9 +1054,9 @@ MonoBehaviour:
   m_SendInterval: 0.0625
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 1
-  m_SyncSpin: 0
+  m_SyncSpin: 1
   m_MovementTheshold: 0.1
-  m_VelocityThreshold: 0.0001
+  m_VelocityThreshold: 0.1
   m_SnapThreshold: 2
   m_InterpolateRotation: 0.5
   m_InterpolateMovement: 0.5
@@ -1268,12 +1268,12 @@ NavMeshAgent:
   m_GameObject: {fileID: 1856764414135112}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

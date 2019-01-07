@@ -18,8 +18,6 @@ namespace Assets.Scripts {
             var message = extraMessageReader.ReadMessage<NetworkMessage>();
             int clientChosenCharacter = message.ChosenCharacter;
             Transform startPos = GetStartPosition();
-            //todo ms wywalic
-            startPos.SetPositionAndRotation(new Vector3(130, 5, 90), Quaternion.identity);
 
             GameObject player = startPos != null ? 
                 Instantiate(Characters[clientChosenCharacter], startPos.position, startPos.rotation) 
